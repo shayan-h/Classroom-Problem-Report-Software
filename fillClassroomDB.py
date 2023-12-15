@@ -10,7 +10,6 @@ db_user = config['Database']['username']
 db_db = config['Database']['database']
 db_password = config['Database']['password']
 
-
 # Connect to DB
 mydb = mysql.connector.connect(
     host = db_host,
