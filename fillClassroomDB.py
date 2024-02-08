@@ -1,22 +1,9 @@
 import mysql.connector
 import csv
-import configparser as cp 
-
-config = cp.ConfigParser()
-config.read('config.ini')
-
-db_host = config['Database']['host']
-db_user = config['Database']['username']
-db_db = config['Database']['database']
-db_password = config['Database']['password']
+from dbConnection import getDbConnection
 
 # Connect to DB
-mydb = mysql.connector.connect(
-    host = db_host,
-    user = db_user,
-    database = db_db,
-    password = db_password
-)
+mydb = getDbConnection()
 
 cursor = mydb.cursor()
 
@@ -38,4 +25,5 @@ def importClassrooms(csvFileName):
 
 fileName = "Classrooms.csv"
 importClassrooms(fileName)
+mydb.close()
 print("Done.")

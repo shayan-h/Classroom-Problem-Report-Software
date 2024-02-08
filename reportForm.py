@@ -1,25 +1,12 @@
 import mysql.connector
-import configparser as cp
-
-config = cp.ConfigParser()
-config.read('config.ini')
-
-db_host = config['Database']['host']
-db_user = config['Database']['username']
-db_db = config['Database']['database']
-db_password = config['Database']['password']
+from dbConnection import getDbConnection
 
 problems_array = ["Laptop VGA Video", "Laptop VGA Audio", "Laptop HDMI Video", "Laptop HDMI Audio", "Desktop Video", "Desktop Audio", "Speaker Issue",
                 "Data Projector", "Blue-ray Controls", "Document Camera", "Podium Microphone", "AppleTV", "Control System", "Missing Equipment", 
                 "Wireless Microphone", "Other"]
 
 # Connect to DB
-mydb = mysql.connector.connect(
-    host = db_host,
-    user = db_user,
-    database = db_db,
-    password = db_password
-)
+mydb = getDbConnection()
 
 cursor = mydb.cursor()
 
