@@ -21,10 +21,10 @@ def checkIfRoomExists(building, room):
     classroomId = result[0][0]
     return True, classroomId
 
-def createProblemReport(classroomId, problemType, problemDes):
+def createProblemReport(classroomId, problemType, problemDes, problemNum):
     try: 
-        query = "INSERT INTO reports (classroomId, problemType, problemDes, resolved, reportedBy) VALUES (%s, %s, %s, 1, 'Student')"
-        val = (classroomId, problemType, problemDes)
+        query = "INSERT INTO reports (classroomId, problemType, problemDes, resolved, reportedBy, problemTypeID) VALUES (%s, %s, %s, 1, 'Student', %s)"
+        val = (classroomId, problemType, problemDes, problemNum)
         cursor.execute(query, val)
         mydb.commit()
         return True
@@ -42,14 +42,14 @@ while keepLooping:
     roomExists, classroomId = checkIfRoomExists(building, room)
     if (not roomExists):
         print("Room does not exist")
-        break
+        continue
     i = 1
     for problem in problems_array:
         print(str(i) + ". " + problem)
         i += 1
     problemNum = input("Enter problem digit: (ex. \"1\" for Laptop VGA Video) ")
     problemDes = input("Enter a short description of the problem: ")
-    if (createProblemReport(classroomId, problems_array[int(problemNum) - 1], problemDes)):
+    if (createProblemReport(classroomId, problems_array[int(problemNum) - 1], problemDes, problemNum)):
         print("Problem report succesfully made.")
     else:
         print("Problem report failed.")
