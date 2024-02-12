@@ -2,8 +2,8 @@ import mysql.connector
 from dbConnection import getDbConnection
 
 problems_array = ["Laptop VGA Video", "Laptop VGA Audio", "Laptop HDMI Video", "Laptop HDMI Audio", "Desktop Video", "Desktop Audio", "Speaker Issue",
-                "Data Projector", "Blue-ray Controls", "Document Camera", "Podium Microphone", "AppleTV", "Control System", "Missing Equipment", 
-                "Wireless Microphone", "Other"]
+                "Data Projector", "Wireless Microphone", "Blue-ray Controls", "Document Camera", "Podium Microphone", "AppleTV", "Control System", 
+                "Missing Equipment", "Other"]
 
 # Connect to DB
 mydb = getDbConnection()
